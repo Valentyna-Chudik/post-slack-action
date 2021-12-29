@@ -11,22 +11,17 @@ try {
     .split("/")
     .splice(-1)[0]
     .replace(".yml", "");
-  let eventInfo = core.getInput("event");
 
   let content;
   switch (github.context.eventName) {
-    case "push":
-      content = `Push on *${branch}*. Job: ${jobName} \n Commit: ${
-        JSON.parse(eventInfo).head_commit.url
-      }`;
+    case "pull_request_review":
+      content = `Pull Request #${github.context.payload.pull_request.number}: ${github.context.payload.pull_request.html_url} is reviewed by ${github.context.payload.pull_request_review.sender}`;
       break;
     case "pull_request":
-      content = `Pull Request #${github.context.payload.pull_request.number}: ${github.context.payload.pull_request.html_url}`;
+      content = `Pull Request #${github.context.payload.pull_request.number}: ${github.context.payload.pull_request.html_url} is ready for review`;
       break;
     default:
-      content = `On *${branch}* branch \n Commit: ${
-        JSON.parse(eventInfo).head_commit.url
-      }`;
+      content = `Pull Request #${github.context.payload.pull_request.number}: ${github.context.payload.pull_request.html_url} is ready for review`;
   }
 
   const payload = {
