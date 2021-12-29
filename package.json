@@ -1,0 +1,28 @@
+{
+  "name": "post-slack-action",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "ncc build index.js -o dist --source-map"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Valentyna-Chudik/post-slack-action.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Valentyna-Chudik/post-slack-action/issues"
+  },
+  "homepage": "https://github.com/Valentyna-Chudik/post-slack-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@actions/github": "^5.0.0",
+    "node-fetch": "^2.6.6"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.33.1"
+  }
+}

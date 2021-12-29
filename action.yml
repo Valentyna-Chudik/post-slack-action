@@ -1,0 +1,14 @@
+name: "Notify Job Status to Slack"
+description: "Notify a job status to a specific Slack channel."
+inputs:
+  event:
+    description: "Event info"
+  job-status:
+    description: "Job status"
+  slack-bot-token:
+    description: "Bot token used to send messages"
+  channel:
+    description: "Channel where the messages are sended"
+runs:
+  using: "node12"
+  main: "dist/index.js"
