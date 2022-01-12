@@ -1,4 +1,5 @@
 # GitHub Action: Post Slack Message (Push, Pull Request Git Events)
+# GitHub Action: Post Slack Message (Push, Pull Request Git Events)
 
 Inspired by [this github action](https://github.com/alejandrogonzalez3/post-slack-action).
 
