@@ -11,41 +11,35 @@ try {
     .split("/")
     .splice(-1)[0]
     .replace(".yml", "");
+  let eventInfo = core.getInput("event");
 
   let content;
   switch (github.context.eventName) {
-    case "pull_request_review":
-      content = `Pull Request #${github.context.payload.pull_request.number}: ${github.context.payload.pull_request.html_url} is reviewed by ${github.context.payload.pull_request_review.sender}`;
+    case "push":
+      content = `Push on *${branch}*. Job: ${jobName} \n Commit: ${
+        JSON.parse(eventInfo).head_commit.url
+      }`;
       break;
     case "pull_request":
-      content = `Pull Request #${github.context.payload.pull_request.number}: ${github.context.payload.pull_request.html_url} is ready for review`;
+      content = `Pull Request #${github.context.payload.pull_request.number}: ${github.context.payload.pull_request.html_url}`;
       break;
     default:
-      content = `Pull Request #${github.context.payload.pull_request.number}: ${github.context.payload.pull_request.html_url} is ready for review`;
+      content = `On *${branch}* branch \n Commit: ${
+        JSON.parse(eventInfo).head_commit.url
+      }`;
   }
 
   const payload = {
     channel: `${core.getInput("channel")}`,
     attachments: [
       {
-        color:
-          status === "success"
-            ? "#2e993e"
-            : status === "failure"
-            ? "#bd0f26"
-            : "#d29d0c",
+        color: "#2e993e",
         blocks: [
           {
             type: "section",
             text: {
               type: "mrkdwn",
-              text: `Github Action *${workflow}*: *${
-                status === "success"
-                  ? "SUCCESS"
-                  : status === "failure"
-                  ? "FAILURE"
-                  : "CANCELLED"
-              }*`,
+              text: `Github Action *${workflow}*: SUCCESS`,
             },
           },
           {

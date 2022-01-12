@@ -1,14 +1,9 @@
-# on: [push, pull_request]
-on:
-  pull_request:
-    types: [opened, ready_for_review]
-  pull_request_review:
-    types: [submitted]
+on: [push, pull_request]
 
 jobs:
-  slack_notify:
+  slack_notify_success:
     runs-on: ubuntu-latest
-    name: Slack Notification
+    name: Test the action on success
     steps:
       - name: Checkout
         uses: actions/checkout@v2

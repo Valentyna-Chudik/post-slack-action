@@ -1,5 +1,5 @@
-name: "Notify about PR ready for review"
-description: "Notify about PR ready for review to a specific Slack channel."
+name: "Notify job status to Slack"
+description: "Notify a job status to a specific Slack channel."
 inputs:
   event:
     description: "Event info"
